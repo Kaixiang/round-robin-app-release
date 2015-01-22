@@ -1,42 +1,42 @@
 meta:
   environment: (( merge ))
-  dns_root: (( merge ))
-  security_groups: (( merge ))
-  persistent_disk: 4096
+  proxy_floating_ip: (( merge ))
 
   stemcell:
-    name: bosh-aws-xen-ubuntu
+    name: bosh-aws-xen-ubuntu-trusty-go_agent
     version: latest
 
 jobs:
-  - name: round_robin_app_leader_z1
-    instances: 1
-    networks:
-      - name: round_robin_app1
-    persistent_disk: (( meta.persistent_disk ))
-  - name: round_robin_app_z1
-    instances: 2
-    networks:
-      - name: round_robin_app1
-    persistent_disk: (( meta.persistent_disk ))
-    properties:
-      round_robin_app:
-        leader_address: (( "0.round-robin-app-leader-z1.round-robin-app1." meta.environment "." meta.dns_root ))
+- name: proxy
+  instances: 1
+  networks:
+  - name: round_robin_app1
+    default:
+    - dns
+    - gateway
+    static_ips: (( static_ips(0) ))
+  - name: floating
+    static_ips:
+    - (( meta.proxy_floating_ip ))
+- name: app
+  instances: 2
+  networks:
+  - name: round_robin_app1
+    static_ips: (( static_ips(1, 2) ))
 
 compilation:
   cloud_properties:
-    instance_type: m1.small
+    instance_type: c3.large
 
 resource_pools:
-  - name: small_z1
-    cloud_properties:
-      instance_type: m1.small
+- name: small_z1
+  cloud_properties:
+    instance_type: m1.medium
 
 networks:
-  - name: floating
-    type: vip
-    cloud_properties: {}
-  - name: round_robin_app1
-    type: dynamic
-    cloud_properties:
-      security_groups: (( meta.security_groups ))
+- name: floating
+  type: vip
+  <<: (( merge ))
+- name: round_robin_app1
+  type: manual
+  <<: (( merge ))

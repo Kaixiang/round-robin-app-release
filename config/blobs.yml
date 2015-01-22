@@ -1,1 +1,9 @@
---- {}
+---
+ruby/ruby-2.2.0.tar.gz:
+  object_id: e3f84c48-48ef-482f-9f3a-d1a86a4abcb3
+  sha: 680302104b24f850fddfe93ee37396de01765b37
+  size: 16494584
+ruby/bundler-1.7.12.gem:
+  object_id: b371364e-a02f-4543-84ea-d5d1990397a6
+  sha: 622d21ab12c00a00d9ee3711b5e5872516de6dc3
+  size: 306176

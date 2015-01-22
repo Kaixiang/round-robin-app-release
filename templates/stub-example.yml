@@ -1,0 +1,39 @@
+---
+meta:
+  environment: round-robin
+  proxy_floating_ip: <YOUR IP>
+
+director_uuid: <YOUR DIRECTOR UUID>
+
+releases:
+- name: round-robin-app
+  version: latest
+
+# Fill this out for AWS
+networks:
+- name: round_robin_app1
+  subnets:
+  - range: 10.10.0.0/24
+    gateway: 10.10.0.1
+    static:
+    - 10.10.0.11 - 10.10.0.13
+    reserved:
+    - 10.10.0.2 - 10.10.0.10
+    dns:
+    - 10.10.0.2
+    cloud_properties:
+      security_groups:
+      - bosh
+      subnet: <SUBNET_ID>
+
+- name: floating
+  subnets:
+  - range: 127.0.99.0/24
+    gateway: 127.0.99.1
+    dns:
+    - 127.0.99.250
+  cloud_properties:
+    security_groups:
+    - bosh
+
+

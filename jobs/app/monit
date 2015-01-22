@@ -1,0 +1,5 @@
+check process app
+  with pidfile /var/vcap/sys/run/app/app.pid
+  start program "/var/vcap/jobs/app/bin/monit_debugger app_ctl '/var/vcap/jobs/app/bin/app_ctl start'"
+  stop program "/var/vcap/jobs/app/bin/monit_debugger app_ctl '/var/vcap/jobs/app/bin/app_ctl stop'"
+  group vcap

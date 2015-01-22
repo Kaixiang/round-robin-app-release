@@ -9,25 +9,23 @@ update:
   serial: false
 
 jobs:
-  - name: round_robin_app_leader_z1
-    template: round-robin-app
-    instances: 0
-    resource_pool: small_z1
-    networks: (( merge ))
-    persistent_disk: 0
-    properties: {}
-  - name: round_robin_app_z1
-    template: round-robin-app
-    instances: 0
-    resource_pool: small_z1
-    networks: (( merge ))
-    persistent_disk: 0
-    update:
-      canaries: 10
-    properties:
-      round_robin_app:
-        leader_address: (( merge ))
+- name: proxy
+  template: proxy
+  instances: 1
+  resource_pool: small_z1
+  networks: (( merge ))
+  persistent_disk: 0
+- name: app
+  template: app
+  instances: 2
+  resource_pool: small_z1
+  networks: (( merge ))
+  persistent_disk: 0
+  update:
+    canaries: 10
 
 networks: (( merge ))
 
-properties: {}
+properties:
+  proxy:
+    hosts: (( jobs.app.networks.[0].static_ips ))

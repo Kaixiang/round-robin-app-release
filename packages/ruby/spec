@@ -1,0 +1,6 @@
+---
+name: ruby
+dependencies: []
+files:
+- ruby/ruby-2.2.0.tar.gz
+- ruby/bundler-1.7.12.gem

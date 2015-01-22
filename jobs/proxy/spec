@@ -1,0 +1,12 @@
+---
+name: proxy
+packages:
+- ruby
+- proxy
+templates:
+  bin/proxy_ctl: bin/proxy_ctl
+  bin/monit_debugger: bin/monit_debugger
+  config.yml.erb: config.yml
+  data/properties.sh.erb: data/properties.sh
+  helpers/ctl_setup.sh: helpers/ctl_setup.sh
+  helpers/ctl_utils.sh: helpers/ctl_utils.sh

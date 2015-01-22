@@ -15,7 +15,7 @@ jobs: (( merge ))
 properties: (( merge ))
 
 compilation:
-  workers: 6
+  workers: 2
   network: round_robin_app1
   reuse_compilation_vms: true
   cloud_properties: (( merge ))
@@ -28,8 +28,7 @@ update:
   serial: false
 
 resource_pools:
-  - name: small_z1
-    network: round_robin_app1
-    size: (( auto ))
-    stemcell: (( meta.stemcell ))
-    cloud_properties: (( merge ))
+- name: small_z1
+  network: round_robin_app1
+  stemcell: (( meta.stemcell ))
+  cloud_properties: (( merge ))

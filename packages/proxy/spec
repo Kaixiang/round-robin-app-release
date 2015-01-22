@@ -1,0 +1,6 @@
+---
+name: proxy
+dependencies:
+- ruby
+files:
+- proxy/**/*
