@@ -1,0 +1,5 @@
+check process round_robin_app
+  with pidfile /var/vcap/sys/run/round_robin_app/round_robin_app.pid
+  start program "/var/vcap/jobs/round_robin_app/bin/monit_debugger round_robin_app_ctl '/var/vcap/jobs/round_robin_app/bin/round_robin_app_ctl start'"
+  stop program "/var/vcap/jobs/round_robin_app/bin/monit_debugger round_robin_app_ctl '/var/vcap/jobs/round_robin_app/bin/round_robin_app_ctl stop'"
+  group vcap
