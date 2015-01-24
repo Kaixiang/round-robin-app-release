@@ -1,0 +1,32 @@
+---
+packages:
+- name: app
+  version: 3f05ef5d496ea6ae6d3992a1655df8baf79ad600
+  sha1: d325c5c4862ddf8371c9af45c821d94b1f276f27
+  fingerprint: 3f05ef5d496ea6ae6d3992a1655df8baf79ad600
+  dependencies:
+  - ruby
+- name: proxy
+  version: de27cfe9fba61c8437e849645d4705e3801123e1
+  sha1: 0071ccbe07c5725c7e51bb5b88ea129f8057d59e
+  fingerprint: de27cfe9fba61c8437e849645d4705e3801123e1
+  dependencies:
+  - ruby
+- name: ruby
+  version: 6c9bc92d668990af679957d05816d577dc92e9f8
+  sha1: f2bf5da1b745b1579404bee69f46d4314e71a00d
+  fingerprint: 6c9bc92d668990af679957d05816d577dc92e9f8
+  dependencies: []
+jobs:
+- name: app
+  version: 0b4f59f97145ba9aa75e442268d58cb344568214
+  fingerprint: 0b4f59f97145ba9aa75e442268d58cb344568214
+  sha1: 070f87efacd35b9a442fc488314bbbba4cab5276
+- name: proxy
+  version: ed6155134e8078423b701b182a37cd6224bbbff9
+  fingerprint: ed6155134e8078423b701b182a37cd6224bbbff9
+  sha1: ff692d4205f5e529a7e306d07dc94ff796cfc84c
+commit_hash: 2e053d68
+uncommitted_changes: true
+name: round-robin-app
+version: '1'
