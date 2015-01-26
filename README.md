@@ -19,27 +19,24 @@ cd round-robin-app-boshrelease
 bosh upload release releases/round-robin-app-1.yml
 ```
 
-For AWS:
+### For AWS:
 
 1. make your own stub file base on the example:
-```
-cp templates/stub-example.yml templates/my-stub.yml
-```
-serveral things need to be changed for my-stub.yml to fit into your VPC enviroment.
+  ```
+  cp templates/stub-example.yml templates/my-stub.yml
+  ```
+  serveral things need to be changed for my-stub.yml to fit into your VPC enviroment.
 
-* Change the director uuid.
-* Change the proxy_floating_ip to a elastic ip you already have.
-* Change the security_group and subnet_id settings for each network with something you already have in your VPC.
-* Change the netwoks subnets range/gateway/static_ip/reserved/dns etc for both round_robin_app1 and floating to fit in your VPC enviroment.
+  * Change the director uuid.
+  * Change the proxy_floating_ip to a elastic ip you already have.
+  * Change the security_group and subnet_id settings for each network with something you already have in your VPC.
+  * Change the netwoks subnets range/gateway/static_ip/reserved/dns etc for both round_robin_app1 and floating to fit in your VPC enviroment.
 
 2. Generate deployment manifest from the stub file
-
-```
-templates/make_manifest templates/my-stub.yml
-```
-
+  ```
+  templates/make_manifest templates/my-stub.yml
+  ```
 3. Deploy
-
-```
-bosh deploy
-```
+  ```
+  bosh deploy
+  ```
