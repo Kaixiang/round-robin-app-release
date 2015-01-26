@@ -27,18 +27,18 @@ cp templates/stub-example.yml templates/my-stub.yml
 ```
 serveral things need to be changed for my-stub.yml to fit into your VPC enviroment.
 
-* Change the proxy_floating_ip to a elastic ip you already have
-* change the director uuid
-* change the netwoks subnets for both round_robin_app1 and floating so it fits into your VPC enviroment.
-* Change the security_group and subnet_id settings.
+* Change the director uuid.
+* Change the proxy_floating_ip to a elastic ip you already have.
+* Change the security_group and subnet_id settings for each network with something you already have in your VPC.
+* Change the netwoks subnets range/gateway/static_ip/reserved/dns etc for both round_robin_app1 and floating to fit in your VPC enviroment.
 
-1. Generate deployment manifest from the stub file
+2. Generate deployment manifest from the stub file
 
 ```
 templates/make_manifest templates/my-stub.yml
 ```
 
-1. Deploy
+3. Deploy
 
 ```
 bosh deploy
