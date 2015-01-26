@@ -19,43 +19,27 @@ cd round-robin-app-boshrelease
 bosh upload release releases/round-robin-app-1.yml
 ```
 
-For [bosh-lite](https://github.com/cloudfoundry/bosh-lite), you can quickly create a deployment manifest & deploy a cluster:
+For AWS:
+
+1. make your own stub file base on the example:
+```
+cp templates/stub-example.yml templates/my-stub.yml
+```
+serveral things need to be changed for my-stub.yml to fit into your VPC enviroment.
+
+* Change the proxy_floating_ip to a elastic ip you already have
+* change the director uuid
+* change the netwoks subnets for both round_robin_app1 and floating so it fits into your VPC enviroment.
+* Change the security_group and subnet_id settings.
+
+1. Generate deployment manifest from the stub file
 
 ```
-templates/make_manifest warden
-bosh -n deploy
+templates/make_manifest templates/my-stub.yml
 ```
 
-For AWS EC2:
+1. Deploy
 
 ```
-templates/make_manifest aws-ec2
-bosh -n deploy
-```
-
-### Override security groups
-
-For AWS & Openstack, the default deployment assumes there is a `default` security group.
-If you wish to use a different security group(s) then you can pass in additional configuration when running `make_manifest` above.
-Make sure your security group allows access on port 4567 from anywhere.
-
-Create a file `my-networking.yml`:
-
-``` yaml
----
-networks:
-- name: round-robin-app1
-  type: dynamic
-  cloud_properties:
-    security_groups:
-    - round-robin-app
-```
-
-Where `- round-robin-app` means you wish to use an existing security group called `round-robin-app`.
-
-You now suffix this file path to the `make_manifest` command:
-
-```
-templates/make_manifest openstack-nova my-networking.yml
-bosh -n deploy
+bosh deploy
 ```
